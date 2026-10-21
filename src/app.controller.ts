@@ -22,4 +22,13 @@ export class AppController {
       macskak: await this.appService.getMacskak()
     }
   }
+
+  @Get('jatekok')
+  @Render('jatekok')
+  async getJatekok() {
+    return {
+      title: 'Játékok',
+      jatekok: await this.appService.getJatekok()
+    }
+  }
 }
