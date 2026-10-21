@@ -1,5 +1,6 @@
 import { Controller, Get, Render } from '@nestjs/common';
 import { AppService } from './app.service.js';
+import { title } from 'process';
 
 @Controller()
 export class AppController {
@@ -10,6 +11,15 @@ export class AppController {
   getHello() {
     return {
       title: 'My First NestJS App'
+    }
+  }
+
+  @Get('macskak')
+  @Render('macskak')
+  async getMacskak() {
+    return {
+      title: 'Macskák',
+      macskak: await this.appService.getMacskak()
     }
   }
 }

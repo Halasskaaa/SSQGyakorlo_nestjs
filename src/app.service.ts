@@ -1,8 +1,29 @@
 import { Injectable } from '@nestjs/common';
+import mysql from 'mysql2/promise';
+import { title } from 'process';
+import { Macska } from './macska.js';
+
+const mysqlConnection = mysql.createPool({
+  host: 'localhost', 
+  user: 'root',
+  password: '',
+  database: 'festmenyek',
+});
 
 @Injectable()
 export class AppService {
   getHello(): string {
     return 'Hello World!';
   }
+
+  async getMacskak() {
+    const [results] = await mysqlConnection.execute(
+      'SELECT * FROM `macskak`'
+    )
+    const rows = results as Macska[];
+    return rows;
+  }
+
 }
+
+
