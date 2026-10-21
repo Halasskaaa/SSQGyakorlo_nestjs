@@ -33,6 +33,17 @@ export class AppService {
     return rows;
   }
 
+  async ujJatek(nev:string) {
+    const [results] = await mysqlConnection.execute(
+      'INSERT INTO jatekok (nev) VALUES (?)',
+      [nev]
+    )
+      const rows = results as any;
+      return {
+        id: rows.insertId,
+        nev
+      } as Jatek;
+  }
 }
 
 
